@@ -7,40 +7,36 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Siapkan Java (Koki)
+      - name: Siapkan Java
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Siapkan Flutter (Alat Masak)
+      - name: Siapkan Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.24.0'
           channel: 'stable'
 
-      - name: Download Bumbu (Dependency)
-        run: flutter pub get
-
-      - name: Buat Keystore & Key Properties Otomatis
+      - name: Ambil Kunci dari Brankas
         run: |
-          keytool -genkey -v -keystore upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload -storepass 123456 -keypass 123456 -dname "CN=KasirUMKM, OU=IT, O=UMKM, L=Jakarta, S=Jakarta, C=ID"
+          # Mengubah teks rahasia kembali jadi file kunci
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > upload-keystore.jks
+          # Membuat file resep untuk Gradle
           echo "storePassword=123456" > android/key.properties
           echo "keyPassword=123456" >> android/key.properties
           echo "keyAlias=upload" >> android/key.properties
           echo "storeFile=../../upload-keystore.jks" >> android/key.properties
 
-      - name: Masak File AAB (Release)
+      - name: Download Library
+        run: flutter pub get
+
+      - name: Masak AAB
         run: flutter build appbundle --release --no-tree-shake-icons
 
-      - name: Upload Hasil Masakan (AAB)
+      - name: Simpan Hasil
         uses: actions/upload-artifact@v4
         with:
           name: file-siap-playstore
           path: build/app/outputs/bundle/release/app-release.aab
-
-      - name: Simpan Kunci Keystore (PENTING DISIMPAN)
-        uses: actions/upload-artifact@v4
-        with:
-          name: kunci-rahasia-keystore
-          path: upload-keystore.jks
