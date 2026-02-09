@@ -15,7 +15,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.ilham.pos.umkm"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35 // Paksa ke API 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -30,7 +30,7 @@ android {
     defaultConfig {
         applicationId = "com.ilham.pos.umkm"
         minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 35 // Paksa ke API 35 sesuai permintaan Google
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
