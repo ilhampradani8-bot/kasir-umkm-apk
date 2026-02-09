@@ -1,0 +1,49 @@
+name: Bikin Aplikasi Android
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Siapkan Java (Koki)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Siapkan Flutter (Alat Masak)
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0'
+          channel: 'stable'
+
+      - name: Download Bumbu (Dependency)
+        run: flutter pub get
+
+      - name: Buat Keystore & Key Properties Otomatis
+        run: |
+          # 1. Bikin Keystore (Tanda Tangan Digital)
+          keytool -genkey -v -keystore upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload -storepass 123456 -keypass 123456 -dname "CN=KasirUMKM, OU=IT, O=UMKM, L=Jakarta, S=Jakarta, C=ID"
+          
+          # 2. Bikin file key.properties biar dibaca Flutter
+          echo "storePassword=123456" > android/key.properties
+          echo "keyPassword=123456" >> android/key.properties
+          echo "keyAlias=upload" >> android/key.properties
+          echo "storeFile=../../upload-keystore.jks" >> android/key.properties
+
+      - name: Masak File AAB (Release)
+        run: flutter build appbundle --release --no-tree-shake-icons
+
+      - name: Upload Hasil Masakan (AAB)
+        uses: actions/upload-artifact@v4
+        with:
+          name: file-siap-playstore
+          path: build/app/outputs/bundle/release/app-release.aab
+
+      - name: Simpan Kunci Keystore (PENTING DISIMPAN)
+        uses: actions/upload-artifact@v4
+        with:
+          name: kunci-rahasia-keystore
+          path: upload-keystore.jks
