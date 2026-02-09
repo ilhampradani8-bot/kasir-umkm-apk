@@ -16,7 +16,7 @@ jobs:
       - name: Siapkan Flutter (Alat Masak)
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0
+          flutter-version: '3.24.0'
           channel: 'stable'
 
       - name: Download Bumbu (Dependency)
@@ -24,10 +24,7 @@ jobs:
 
       - name: Buat Keystore & Key Properties Otomatis
         run: |
-          # 1. Bikin Keystore (Tanda Tangan Digital)
           keytool -genkey -v -keystore upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload -storepass 123456 -keypass 123456 -dname "CN=KasirUMKM, OU=IT, O=UMKM, L=Jakarta, S=Jakarta, C=ID"
-          
-          # 2. Bikin file key.properties biar dibaca Flutter
           echo "storePassword=123456" > android/key.properties
           echo "keyPassword=123456" >> android/key.properties
           echo "keyAlias=upload" >> android/key.properties
