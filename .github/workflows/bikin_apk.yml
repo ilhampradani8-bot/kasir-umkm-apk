@@ -30,20 +30,20 @@ jobs:
       - name: Download Library
         run: flutter pub get
 
-      # PROSES 1: Bikin APK (Untuk Tes di HP Oppo)
-      - name: Bikin APK
-        run: flutter build apk --release --no-tree-shake-icons
+      # PROSES 1: Bikin APK (Dipisah per arsitektur agar ringan buat Oppo A3s)
+      - name: Bikin APK Split
+        run: flutter build apk --release --split-per-abi --no-tree-shake-icons
 
-      # PROSES 2: Bikin AAB (Untuk Play Store)
+      # PROSES 2: Bikin AAB (Untuk di-upload ke Google Play Console)
       - name: Bikin AAB
         run: flutter build appbundle --release --no-tree-shake-icons
 
-      # SIMPAN HASIL APK
+      # SIMPAN HASIL APK (Nanti akan muncul beberapa file APK)
       - name: Simpan Hasil APK
         uses: actions/upload-artifact@v4
         with:
           name: file-khusus-hp-kamu
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/*.apk
 
       # SIMPAN HASIL AAB
       - name: Simpan Hasil AAB
