@@ -21,11 +21,22 @@ android {
         applicationId = "com.ilham.pos.umkm"
         minSdk = 21 
         targetSdk = 35
-        versionCode = 8 // Naikkan jadi 8
-        versionName = "1.0.7"
+        versionCode = 9 // Naikkan ke 9 agar fresh
+        versionName = "1.0.8"
         
         multiDexEnabled = true
     }
+
+    // --- BAGIAN PERBAIKAN ERROR JAVA ---
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    // ------------------------------------
 
     signingConfigs {
         create("release") {
@@ -39,11 +50,8 @@ android {
     buildTypes {
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
-            
             isMinifyEnabled = false 
             isShrinkResources = false
-            
-            // BAGIAN NDK ABIFILTERS SUDAH DIHAPUS UNTUK MENGHINDARI BENTROK
         }
     }
 }
