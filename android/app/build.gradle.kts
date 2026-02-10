@@ -4,7 +4,7 @@ import java.io.FileInputStream
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("dev.flutter.flutter-gradle-plugin")
+    id("dev.flutter.flutter-gradle-plugin") // Pastikan ini ada!
 }
 
 val keystorePropertiesFile = rootProject.file("key.properties")
@@ -14,29 +14,18 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.example.kalkulator_bisnis_umkm"
+    // Namespace HARUS SAMA dengan nama folder di error tadi
+    namespace = "com.example.kalkulator_bisnis_umkm" 
     compileSdk = 34
 
     defaultConfig {
         applicationId = "com.ilham.pos.umkm"
         minSdk = 21 
-        targetSdk = 35
-        versionCode = 10 // Naikkan ke 9 agar fresh
-        versionName = "1.0.8"
-        
+        targetSdk = 34
+        versionCode = 12 // Naikkan ke 12
+        versionName = "1.1.1"
         multiDexEnabled = true
     }
-
-    // --- BAGIAN PERBAIKAN ERROR JAVA ---
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-    // ------------------------------------
 
     signingConfigs {
         create("release") {
@@ -50,12 +39,23 @@ android {
     buildTypes {
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = false 
+            isMinifyEnabled = false
             isShrinkResources = false
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
 dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
+    // JURUS PAKSA: Tambahkan ini jika Kotlin masih buta
+    implementation(files("${System.getenv("FLUTTER_ROOT")}/bin/cache/artifacts/engine/android-arm/flutter.jar"))
 }
