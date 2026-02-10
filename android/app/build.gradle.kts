@@ -15,14 +15,14 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.example.kalkulator_bisnis_umkm" 
-    compileSdk = 34
+    compileSdk = 35 // <--- GANTI JADI 35
 
     defaultConfig {
         applicationId = "com.ilham.pos.umkm"
         minSdk = 21 
-        targetSdk = 34
-        versionCode = 18 // Naikkan ke 17
-        versionName = "1.1.7"
+        targetSdk = 35 // <--- INI JUGA WAJIB 35
+        versionCode = 19 // <--- Naikkan ke 19
+        versionName = "1.1.8"
         multiDexEnabled = true
     }
 
