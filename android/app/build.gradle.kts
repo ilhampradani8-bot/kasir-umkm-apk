@@ -21,8 +21,8 @@ android {
         applicationId = "com.ilham.pos.umkm"
         minSdk = 21 
         targetSdk = 35 // <--- INI JUGA WAJIB 35
-        versionCode = 19 // <--- Naikkan ke 19
-        versionName = "1.1.8"
+        versionCode = 20 // <--- Naikkan ke 19
+        versionName = "1.1.9"
         multiDexEnabled = true
     }
 
