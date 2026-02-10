@@ -1,64 +1,36 @@
-import java.util.Properties
-import java.io.FileInputStream
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-val keystoreProperties = Properties()
-val keystorePropertiesFile = rootProject.file("key.properties")
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-}
-
 android {
     namespace = "com.ilham.pos.umkm"
-    compileSdk = 35 // Paksa ke API 35
-    ndkVersion = flutter.ndkVersion
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ilham.pos.umkm"
-        minSdk = flutter.minSdkVersion
+        minSdk = 21 
         targetSdk = 35
-        versionCode = 4 // <--- Ubah jadi 2
-        versionName = "1.0.3" // <--- Ubah dikit biar rapi
-
-        multiDexEnabled = true // <--- TAMBAHKAN BARIS INI
-    }
-
-    signingConfigs {
-        create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String?
-            keyPassword = keystoreProperties["keyPassword"] as String?
-            storeFile = if (keystoreProperties["storeFile"] != null) file(keystoreProperties["storeFile"] as String) else null
-            storePassword = keystoreProperties["storePassword"] as String?
-        }
+        versionCode = 6 // Naikkan jadi 6
+        versionName = "1.0.5"
+        
+        multiDexEnabled = true
     }
 
     buildTypes {
         getByName("release") {
+            isMinifyEnabled = false 
+            isShrinkResources = false
             signingConfig = signingConfigs.getByName("release")
             
-            // Opsional: Jika ingin ukuran file lebih kecil, aktifkan ini
-            isMinifyEnabled = false
-            isShrinkResources = false
-            
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            ndk {
+                abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
+            }
         }
     }
 }
 
-flutter {
-    source = "../.."
+dependencies {
+    implementation("androidx.multidex:multidex:2.0.1")
 }
