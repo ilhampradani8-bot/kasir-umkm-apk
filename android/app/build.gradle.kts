@@ -21,8 +21,8 @@ android {
         applicationId = "com.ilham.pos.umkm"
         minSdk = 21 
         targetSdk = 34
-        versionCode = 15 // Naikkan ke 15
-        versionName = "1.1.4"
+        versionCode = 16 // Naikkan ke 16
+        versionName = "1.1.5"
         multiDexEnabled = true
     }
 
@@ -63,15 +63,19 @@ android {
     }
 }
 
+// --- INI JEMBATAN YANG HILANG TADI ---
+flutter {
+    source = "../.."
+}
+// -------------------------------------
+
 dependencies {
-    // INI YANG TADI KURANG: Bahan pendukung AndroidX
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.window:window:1.0.0")
     implementation("androidx.window:window-java:1.0.0")
-
     implementation("androidx.multidex:multidex:2.0.1")
     
-    // Tetap pertahankan Jurus Paksa ini
+    // Tetap pakai Jurus Paksa ini buat jaga-jaga
     implementation(files("${System.getenv("FLUTTER_ROOT")}/bin/cache/artifacts/engine/android-arm/flutter.jar"))
 }
