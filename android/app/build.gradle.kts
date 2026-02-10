@@ -21,12 +21,11 @@ android {
         applicationId = "com.ilham.pos.umkm"
         minSdk = 21 
         targetSdk = 34
-        versionCode = 14 // Naikkan ke 14
-        versionName = "1.1.3"
+        versionCode = 15 // Naikkan ke 15
+        versionName = "1.1.4"
         multiDexEnabled = true
     }
 
-    // --- TAMENG ANTI-DUPLIKAT (SOLUSI AGAR TIDAK ERROR 2 FILES FOUND) ---
     packaging {
         jniLibs {
             useLegacyPackaging = true
@@ -65,7 +64,14 @@ android {
 }
 
 dependencies {
+    // INI YANG TADI KURANG: Bahan pendukung AndroidX
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.window:window:1.0.0")
+    implementation("androidx.window:window-java:1.0.0")
+
     implementation("androidx.multidex:multidex:2.0.1")
-    // --- JURUS PAKSA (AGAR KOTLIN TIDAK BUTA LAGI) ---
+    
+    // Tetap pertahankan Jurus Paksa ini
     implementation(files("${System.getenv("FLUTTER_ROOT")}/bin/cache/artifacts/engine/android-arm/flutter.jar"))
 }
