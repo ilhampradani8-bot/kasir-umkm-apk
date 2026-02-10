@@ -15,3 +15,9 @@ plugins {
 }
 
 include(":app")
+
+// Tambahan agar plugin share_plus, path_provider, dll terbaca
+val flutterSdkPath = System.getenv("FLUTTER_ROOT") ?: ""
+if (flutterSdkPath.isNotEmpty()) {
+    apply(from = "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle")
+}
