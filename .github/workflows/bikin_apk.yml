@@ -1,4 +1,4 @@
-name: Bikin Aplikasi Android
+name: Bikin Aplikasi Komplit (APK & AAB)
 on: [push, workflow_dispatch]
 
 jobs:
@@ -21,9 +21,7 @@ jobs:
 
       - name: Ambil Kunci dari Brankas
         run: |
-          # Mengubah teks rahasia kembali jadi file kunci
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > upload-keystore.jks
-          # Membuat file resep untuk Gradle
           echo "storePassword=123456" > android/key.properties
           echo "keyPassword=123456" >> android/key.properties
           echo "keyAlias=upload" >> android/key.properties
@@ -32,10 +30,23 @@ jobs:
       - name: Download Library
         run: flutter pub get
 
-      - name: Masak AAB
+      # PROSES 1: Bikin APK (Untuk Tes di HP Oppo)
+      - name: Bikin APK
+        run: flutter build apk --release --no-tree-shake-icons
+
+      # PROSES 2: Bikin AAB (Untuk Play Store)
+      - name: Bikin AAB
         run: flutter build appbundle --release --no-tree-shake-icons
 
-      - name: Simpan Hasil
+      # SIMPAN HASIL APK
+      - name: Simpan Hasil APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: file-khusus-hp-kamu
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      # SIMPAN HASIL AAB
+      - name: Simpan Hasil AAB
         uses: actions/upload-artifact@v4
         with:
           name: file-siap-playstore
