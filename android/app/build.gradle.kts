@@ -31,7 +31,7 @@ android {
         applicationId = "com.ilham.pos.umkm"
         minSdk = flutter.minSdkVersion
         targetSdk = 35
-        versionCode = 2 // <--- Ubah jadi 2
+        versionCode = 3 // <--- Ubah jadi 2
         versionName = "1.0.1" // <--- Ubah dikit biar rapi
     }
 
