@@ -21,22 +21,21 @@ android {
         applicationId = "com.ilham.pos.umkm"
         minSdk = 21 
         targetSdk = 34
-        versionCode = 13 // Naikkan ke 13
-        versionName = "1.1.2"
+        versionCode = 14 // Naikkan ke 14
+        versionName = "1.1.3"
         multiDexEnabled = true
     }
 
-    // --- JURUS ANTI-DUPLIKAT (SOLUSI ERROR TADI) ---
+    // --- TAMENG ANTI-DUPLIKAT (SOLUSI AGAR TIDAK ERROR 2 FILES FOUND) ---
     packaging {
+        jniLibs {
+            useLegacyPackaging = true
+            pickFirsts += "**/libflutter.so"
+        }
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
-        jniLibs {
-            useLegacyPackaging = true
-            pickFirsts += "lib/**/libflutter.so"
-        }
     }
-    // ----------------------------------------------
 
     signingConfigs {
         create("release") {
@@ -67,5 +66,6 @@ android {
 
 dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
-    // Baris manual flutter.jar SUDAH DIHAPUS agar tidak duplikat
+    // --- JURUS PAKSA (AGAR KOTLIN TIDAK BUTA LAGI) ---
+    implementation(files("${System.getenv("FLUTTER_ROOT")}/bin/cache/artifacts/engine/android-arm/flutter.jar"))
 }
