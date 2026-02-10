@@ -31,8 +31,10 @@ android {
         applicationId = "com.ilham.pos.umkm"
         minSdk = flutter.minSdkVersion
         targetSdk = 35
-        versionCode = 3 // <--- Ubah jadi 2
-        versionName = "1.0.1" // <--- Ubah dikit biar rapi
+        versionCode = 4 // <--- Ubah jadi 2
+        versionName = "1.0.3" // <--- Ubah dikit biar rapi
+
+        multiDexEnabled = true // <--- TAMBAHKAN BARIS INI
     }
 
     signingConfigs {
