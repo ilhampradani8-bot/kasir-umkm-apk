@@ -21,8 +21,8 @@ android {
         applicationId = "com.ilham.pos.umkm"
         minSdk = 21 
         targetSdk = 34
-        versionCode = 16 // Naikkan ke 16
-        versionName = "1.1.5"
+        versionCode = 17 // Naikkan ke 17
+        versionName = "1.1.6"
         multiDexEnabled = true
     }
 
@@ -63,11 +63,10 @@ android {
     }
 }
 
-// --- INI JEMBATAN YANG HILANG TADI ---
+// INI KUNCINYA AGAR PLUGIN BISA MASUK
 flutter {
     source = "../.."
 }
-// -------------------------------------
 
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
@@ -75,7 +74,6 @@ dependencies {
     implementation("androidx.window:window:1.0.0")
     implementation("androidx.window:window-java:1.0.0")
     implementation("androidx.multidex:multidex:2.0.1")
-    
-    // Tetap pakai Jurus Paksa ini buat jaga-jaga
-    implementation(files("${System.getenv("FLUTTER_ROOT")}/bin/cache/artifacts/engine/android-arm/flutter.jar"))
+
+    // BAGIAN MANUAL FLUTTER.JAR SUDAH SAYA HAPUS AGAR TIDAK DUPLIKAT
 }
