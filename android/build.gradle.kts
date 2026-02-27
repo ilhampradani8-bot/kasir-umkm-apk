@@ -3,8 +3,8 @@ allprojects {
         google()
         mavenCentral()
         // --- GUDANG IKLAN APPODEAL & TIKTOK (PANGLE) ---
-        maven { url "https://artifactory.appodeal.com/appodeal" }
-        maven { url "https://artifact.bytedance.com/repository/pangle" }
+        maven { url = uri("https://artifactory.appodeal.com/appodeal") }
+        maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
     }
 }
 
