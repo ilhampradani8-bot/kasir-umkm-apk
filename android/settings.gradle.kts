@@ -9,11 +9,11 @@ pluginManagement {
 }
 
 plugins {
-    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
-    id "com.android.application" version "7.3.0" apply false
-    // Update versi Kotlin ke 1.9.22 untuk Appodeal
-    id "org.jetbrains.kotlin.android" version "1.9.22" apply false
+    id("dev.flutter.flutter-plugin-loader") version "1.0.0"
+    id("com.android.application") version "7.3.0" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
 }
+
 include(":app")
 
 // Tambahan agar plugin share_plus, path_provider, dll terbaca
