@@ -21,3 +21,14 @@ val flutterSdkPath = System.getenv("FLUTTER_ROOT") ?: ""
 if (flutterSdkPath.isNotEmpty()) {
     apply(from = "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle")
 }
+
+// --- BLOK BARU UNTUK MENGUNDUH SDK IKLAN (PANGLE & APPODEAL) ---
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://artifactory.appodeal.com/appodeal") }
+        maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
+    }
+}
