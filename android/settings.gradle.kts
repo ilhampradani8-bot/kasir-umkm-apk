@@ -24,10 +24,12 @@ if (flutterSdkPath.isNotEmpty()) {
 
 // --- BLOK BARU UNTUK MENGUNDUH SDK IKLAN (PANGLE & APPODEAL) ---
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    // KITA UBAH MODE-NYA JADI PREFER_SETTINGS AGAR FLUTTER TETAP BISA JALAN
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
+        // Repositori wajib untuk Appodeal & Pangle (TikTok)
         maven { url = uri("https://artifactory.appodeal.com/appodeal") }
         maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
     }
