@@ -10,15 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
   
-  # --- PLUGIN WAJIB KASIR ---
   intl: ^0.19.0
-  shared_preferences: ^2.2.2
-  share_plus: ^10.0.0
-  cupertino_icons: ^1.0.2
+  shared_preferences: ^2.5.3
+  share_plus: ^10.1.4
+  cupertino_icons: ^1.0.8
 
   # --- PLUGIN IKLAN APPODEAL ---
-  # SDK for Appodeal Ads monetization
-  stack_appodeal_flutter: ^3.0.0
+  # KITA KUNCI DI VERSI 3.0.0 (TIDAK BOLEH NAIK OTOMATIS)
+  stack_appodeal_flutter: 3.0.0
 
 dev_dependencies:
   flutter_test:
