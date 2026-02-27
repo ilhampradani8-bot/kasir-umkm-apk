@@ -19,7 +19,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ilham.pos.umkm"
-        minSdk = 21 
+        minSdk = 23
         targetSdk = 35 // <--- INI JUGA WAJIB 35
         versionCode = 21 // <--- Naikkan ke 19
         versionName = "1.1.9"
