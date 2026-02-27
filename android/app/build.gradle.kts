@@ -26,8 +26,9 @@ android {
         multiDexEnabled = true
     }
 
-    packaging {
-        resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+    packagingOptions {
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
     }
 
     signingConfigs {
