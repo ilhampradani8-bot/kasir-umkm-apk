@@ -19,8 +19,8 @@ android {
 
     defaultConfig {
         applicationId = "com.ilham.pos.umkm"
-        minSdk = 23
-        targetSdk = 34 // <--- TURUNKAN JADI 34
+        minSdk = 23 
+        targetSdk = 34 
         versionCode = 21 
         versionName = "1.1.9"
         multiDexEnabled = true
