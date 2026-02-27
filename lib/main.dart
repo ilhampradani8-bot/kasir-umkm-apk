@@ -1,3 +1,4 @@
+import 'package:stack_appodeal_flutter/stack_appodeal_flutter.dart'; // Import Appodeal SDK
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
