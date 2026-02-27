@@ -64,7 +64,17 @@ String footerStruk = "Terima Kasih!";
 final NumberFormat rpFormat =
     NumberFormat.currency(locale: 'id', symbol: 'Rp ', decimalDigits: 0);
 
-void main() {
+Future<void> main() async {
+  // Ensure Flutter bindings are initialized before calling native code
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Appodeal SDK with your App Key
+  Appodeal.initialize(
+    appKey: "6e21133cccac68be0d4a44e7969f35e12d69a6f704786b97",
+    adTypes: [AppodealAdType.Banner],
+  );
+  
+  // Run the main app
   runApp(const AplikasiKasirV3());
 }
 
@@ -349,11 +359,13 @@ class _HalamanKasirState extends State<HalamanKasir> {
     );
   }
 
-  @override
+ @override
   Widget build(BuildContext context) {
+    // Calculate total payment
     double totalBayar = 0;
     keranjang.forEach((idx, qty) => totalBayar += dbProduk[idx].harga * qty);
 
+    // Return the main scaffold for Kasir UI
     return Scaffold(
       appBar: AppBar(title: const Text("Kasir"), actions: [
         IconButton(
@@ -361,7 +373,7 @@ class _HalamanKasirState extends State<HalamanKasir> {
       ]),
       body: Column(
         children: [
-          // GRID BARANG
+          // Product grid section
           Expanded(
             child: dbProduk.isEmpty
                 ? const Center(
@@ -425,7 +437,14 @@ class _HalamanKasirState extends State<HalamanKasir> {
                     },
                   ),
           ),
-          // PANEL TOTAL
+          
+          // Appodeal Banner Ad placed above the total panel
+          const AppodealBanner(
+            adSize: AppodealBannerSize.BANNER,
+            placement: "default",
+          ),
+
+          // Total payment panel section
           Container(
             padding: const EdgeInsets.all(15),
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [
@@ -453,9 +472,9 @@ class _HalamanKasirState extends State<HalamanKasir> {
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 12)),
-                    onPressed: _bayar,
-                    icon: const Icon(Icons.print),
-                    label: const Text("BAYAR"),
+                        onPressed: _bayar,
+                        icon: const Icon(Icons.print),
+                        label: const Text("BAYAR"),
                   )
               ],
             ),
@@ -464,7 +483,6 @@ class _HalamanKasirState extends State<HalamanKasir> {
       ),
     );
   }
-}
 
 // ==========================================
 // 6. HALAMAN STOK (SAMA TAPI LEBIH STABIL)
