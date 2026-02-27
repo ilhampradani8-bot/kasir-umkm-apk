@@ -27,10 +27,6 @@ android {
     }
 
     packaging {
-        jniLibs {
-            useLegacyPackaging = true
-            pickFirsts += "**/libflutter.so"
-        }
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
