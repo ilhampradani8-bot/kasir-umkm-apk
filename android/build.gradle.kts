@@ -2,9 +2,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        // --- GUDANG IKLAN APPODEAL & TIKTOK (PANGLE) ---
+        // Repositori wajib untuk jaringan iklan pihak ketiga
         maven { url = uri("https://artifactory.appodeal.com/appodeal") }
         maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
+        maven { url = uri("https://android-sdk.is.com/") }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
