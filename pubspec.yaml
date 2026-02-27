@@ -10,13 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
   
-  # --- PLUGIN WAJIB DARI KODINGANMU ---
-  intl: ^0.19.0              # Untuk Format Rupiah
-  shared_preferences: ^2.2.2 # Untuk Simpan Data
-  share_plus: ^10.0.0         # Untuk Share Struk ke WA
-  # ------------------------------------
-
+  # --- PLUGIN WAJIB KASIR ---
+  intl: ^0.19.0
+  shared_preferences: ^2.2.2
+  share_plus: ^10.0.0
   cupertino_icons: ^1.0.2
+
+  # --- PLUGIN IKLAN APPODEAL ---
+  # SDK for Appodeal Ads monetization
+  stack_appodeal_flutter: ^3.0.0
 
 dev_dependencies:
   flutter_test:
