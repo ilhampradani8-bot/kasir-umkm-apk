@@ -227,13 +227,6 @@ class _HalamanUtamaState extends State<HalamanUtama> {
 // ==========================================
 // 5. HALAMAN KASIR (DENGAN STRUK)
 // ==========================================
-class HalamanKasir extends StatefulWidget {
-  const HalamanKasir({super.key});
-
-  @override
-  State<HalamanKasir> createState() => _HalamanKasirState();
-}
-
 class _HalamanKasirState extends State<HalamanKasir> {
   Map<int, int> keranjang = {}; // Key: Index Produk, Value: Jumlah
 
@@ -359,7 +352,7 @@ class _HalamanKasirState extends State<HalamanKasir> {
     );
   }
 
- @override
+  @override
   Widget build(BuildContext context) {
     // Calculate total payment
     double totalBayar = 0;
@@ -483,6 +476,7 @@ class _HalamanKasirState extends State<HalamanKasir> {
       ),
     );
   }
+} // <-- TUTUP KURUNG INI YANG TADI HILANG DAN BIKIN ERROR MASSAL
 
 // ==========================================
 // 6. HALAMAN STOK (SAMA TAPI LEBIH STABIL)
