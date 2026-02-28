@@ -9,8 +9,11 @@ pluginManagement {
 }
 
 plugins {
+    // Load standard flutter plugin
     id("dev.flutter.flutter-plugin-loader") version "1.0.0"
-    id("com.android.application") version "8.3.2" apply false
+    // Upgrade Android Gradle Plugin to 8.5.2 for 16KB page size support
+    id("com.android.application") version "8.5.2" apply false
+    // Keep Kotlin at 2.0.0
     id("org.jetbrains.kotlin.android") version "2.0.0" apply false
 }
 
