@@ -16,21 +16,8 @@ plugins {
 
 include(":app")
 
-// Tambahan agar plugin share_plus, path_provider, dll terbaca
 val flutterSdkPath = System.getenv("FLUTTER_ROOT") ?: ""
 if (flutterSdkPath.isNotEmpty()) {
     apply(from = "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle")
 }
-
-// --- BLOK BARU UNTUK MENGUNDUH SDK IKLAN (PANGLE & APPODEAL) ---
-dependencyResolutionManagement {
-    // KITA UBAH MODE-NYA JADI PREFER_SETTINGS AGAR FLUTTER TETAP BISA JALAN
-    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
-    repositories {
-        google()
-        mavenCentral()
-        // Repositori wajib untuk Appodeal & Pangle (TikTok)
-        maven { url = uri("https://artifactory.appodeal.com/appodeal") }
-        maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
-    }
-}
+// PASTIKAN TIDAK ADA BLOK dependencyResolutionManagement DI SINI
