@@ -15,9 +15,9 @@ dependencies:
   share_plus: ^10.1.4
   cupertino_icons: ^1.0.8
 
-  # --- PLUGIN IKLAN APPODEAL ---
-  # KITA KUNCI DI VERSI 3.0.0 (TIDAK BOLEH NAIK OTOMATIS)
-  stack_appodeal_flutter: 3.0.0
+   # --- PLUGIN IKLAN APPODEAL ---
+  # KITA KUNCI DI VERSI 3.3.0 (MENGHINDARI DEAD LINK PANGLE)
+  stack_appodeal_flutter: 3.3.0
 
 dev_dependencies:
   flutter_test:
